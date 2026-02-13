@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Love ♥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #0a0404;
+            color: #f5e6e8;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at center, #1a0a0f 0%, #0a0404 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(184, 134, 11, 0.1) 0%, transparent 40%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeInHero 3s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeInHero {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: #d4af37;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 2s ease-out 1.5s forwards;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            letter-spacing: 0.3em;
+            color: #f5e6e8;
+            opacity: 0;
+            animation: fadeInUp 2s ease-out 2.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                transform: translateY(30px);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 2s ease-out 4s forwards, bounce 2s ease-in-out 5s infinite;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator::after {
+            content: '♥';
+            font-size: 2rem;
+            color: #8b0000;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.8);
+        }
+
+        /* Love Message Section */
+        .love-message {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            position: relative;
+            background: linear-gradient(180deg, #0a0404 0%, #1a0a0f 50%, #0a0404 100%);
+        }
+
+        .love-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .message-container {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .message-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .message-container h2 {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .message-text {
+            font-size: 1.3rem;
+            line-height: 2;
+            color: #f5e6e8;
+            font-style: italic;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .signature {
+            font-size: 2rem;
+            color: #d4af37;
+            font-family: 'Brush Script MT', cursive;
+            margin-top: 3rem;
+        }
+
+        /* Photo Slideshow Section */
+        .slideshow-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            background: #0a0404;
+            position: relative;
+        }
+
+        .slideshow-container {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1.5s ease-out;
+        }
+
+        .slideshow-container.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slideshow-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: 2px solid #d4af37;
+            box-shadow: 
+                0 0 30px rgba(212, 175, 55, 0.3),
+                inset 0 0 50px rgba(139, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1a0a0f;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-content {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .slide-image-placeholder {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #8b0000 0%, #d4af37 100%);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .slide-caption {
+            font-size: 1.5rem;
+            color: #f5e6e8;
+            font-style: italic;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .slide-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slide-dot.active {
+            background: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+        }
+
+        /* Photo Pin Section */
+        .photo-pin-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #0a0404 0%, #120606 50%, #0a0404 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-pin-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(184, 134, 11, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .pin-container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .pin-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pin-title {
+            text-align: center;
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 4rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .polaroid-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .polaroid-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .polaroid {
+            background: linear-gradient(145deg, #f5f5f5, #e8e8e8);
+            padding: 20px 20px 60px 20px;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(212, 175, 55, 0.2);
+            transform: rotate(0deg);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            width: 280px;
+        }
+
+        .polaroid-row-1 .polaroid {
+            transform: rotate(-2deg);
+        }
+
+        .polaroid-row-2 .polaroid:nth-child(1) {
+            transform: rotate(3deg);
+        }
+
+        .polaroid-row-2 .polaroid:nth-child(2) {
+            transform: rotate(-3deg);
+        }
+
+        .polaroid-row-3 .polaroid:nth-child(1) {
+            transform: rotate(-4deg);
+        }
+
+        .polaroid-row-3 .polaroid:nth-child(2) {
+            transform: rotate(2deg);
+        }
+
+        .polaroid-row-3 .polaroid:nth-child(3) {
+            transform: rotate(-2deg);
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) translateY(-10px) scale(1.05) !important;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(212, 175, 55, 0.5);
+            z-index: 10;
+        }
+
+        .polaroid::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #d4af37 30%, transparent 31%);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .polaroid::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 15px;
+            background: linear-gradient(180deg, #8b0000 0%, transparent 100%);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .polaroid-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #1a0a0f 0%, #2a1a1f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .polaroid-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .polaroid-caption {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.3rem;
+            color: #2a2a2a;
+            text-align: center;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Video Section */
+        .video-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #120606 0%, #0a0404 50%, #1a0a0f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 20%, rgba(139, 0, 0, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 50% 80%, rgba(184, 134, 11, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .video-container {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.5s ease-out;
+        }
+
+        .video-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .video-title {
+            text-align: center;
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .video-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #f5e6e8;
+            margin-bottom: 3rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding: 30px;
+            background: linear-gradient(145deg, rgba(26, 10, 15, 0.8), rgba(10, 4, 4, 0.9));
+            border: 3px solid #d4af37;
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                0 0 40px rgba(212, 175, 55, 0.3),
+                inset 0 0 50px rgba(139, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(212, 175, 55, 0.05) 0%,
+                transparent 50%,
+                rgba(139, 0, 0, 0.05) 100%
+            );
+            pointer-events: none;
+        }
+
+        .video-player {
+            position: relative;
+            width: 100%;
+            max-height: 600px;
+            height: 500px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .video-player video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-controls-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .video-player:hover .video-controls-overlay {
+            opacity: 1;
+        }
+
+        .custom-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.9) 0%, rgba(139, 0, 0, 0.7) 100%);
+            border: 4px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 0 40px rgba(212, 175, 55, 0.6),
+                inset 0 0 20px rgba(212, 175, 55, 0.2);
+            z-index: 10;
+        }
+
+        .custom-play-button:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+            background: radial-gradient(circle, rgba(160, 0, 0, 0.95) 0%, rgba(139, 0, 0, 0.8) 100%);
+            box-shadow: 
+                0 0 60px rgba(212, 175, 55, 0.9),
+                inset 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .custom-play-button.playing {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 30px solid #d4af37;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            margin-left: 8px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+        }
+
+        .video-caption {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            color: #f5e6e8;
+            font-style: italic;
+            line-height: 1.8;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .video-heart-decoration {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 2rem;
+            color: #8b0000;
+            text-shadow: 0 0 20px rgba(139, 0, 0, 0.8);
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, #1a0a0f 0%, #0a0404 70%);
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(139, 0, 0, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(184, 134, 11, 0.15) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .cta-content {
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 1.5s ease-out;
+        }
+
+        .cta-content.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .cta-content h2 {
+            font-size: 5rem;
+            color: #d4af37;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .cta-content p {
+            font-size: 1.8rem;
+            color: #f5e6e8;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .heart-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #8b0000 0%, #a00000 100%);
+            color: #d4af37;
+            font-size: 1.5rem;
+            text-decoration: none;
+            border: 2px solid #d4af37;
+            border-radius: 50px;
+            letter-spacing: 0.2em;
+            transition: all 0.5s;
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .heart-button:hover {
+            background: linear-gradient(135deg, #a00000 0%, #8b0000 100%);
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.8);
+            transform: translateY(-5px);
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(139, 0, 0, 0.3);
+            font-size: 20px;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: rgba(139, 0, 0, 0.8);
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+        }
+
+        .music-control::after {
+            content: '♪';
+            font-size: 1.8rem;
+            color: #d4af37;
+        }
+
+        .music-control.paused::after {
+            content: '♪';
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            
+            .message-container h2,
+            .slideshow-title,
+            .pin-title,
+            .video-title,
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+            
+            .message-text {
+                font-size: 1.1rem;
+            }
+            
+            .slideshow {
+                height: 400px;
+            }
+            
+            .slide-image-placeholder {
+                width: 250px;
+                height: 250px;
+                font-size: 2.5rem;
+            }
+
+            .polaroid-grid {
+                gap: 30px;
+            }
+
+            .polaroid-row {
+                gap: 20px;
+            }
+
+            .polaroid {
+                width: 250px;
+            }
+
+            .polaroid-image {
+                font-size: 3rem;
+            }
+
+            .polaroid-caption {
+                font-size: 1.1rem;
+            }
+
+            .video-wrapper {
+                padding: 15px;
+            }
+
+            .video-player {
+                height: 350px;
+            }
+
+            .video-subtitle {
+                font-size: 1rem;
+            }
+
+            .video-caption {
+                font-size: 1.1rem;
+            }
+
+            .custom-play-button {
+                width: 70px;
+                height: 70px;
+            }
+
+            .play-icon {
+                border-left: 20px solid #d4af37;
+                border-top: 15px solid transparent;
+                border-bottom: 15px solid transparent;
+                margin-left: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MY LYN</h1>
+            <p class="subtitle">THIS IS FOR YOU</p>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Love Message Section -->
+    <section class="love-message">
+        <div class="message-container" id="messageContainer">
+            <h2>To The One Who Holds My Heart</h2>
+            <p class="message-text">
+                Every moment with you feels like a beautiful dream I never want to wake from. 
+                You've brought colors into my world I never knew existed, and warmth to places 
+                I didn't know were cold. Your smile is my favorite sight, your laugh my favorite 
+                sound, and your happiness my greatest treasure.
+                <br><br>
+                In a world full of temporary things, you are a perpetual feeling. 
+                My love for you grows deeper with each passing day, each shared glance, 
+                each whispered word in the quiet moments we share together.
+                <br><br>
+                Happy Valentine Lyn 💖💌
+            </p>
+            <div class="signature">Forever Yours ♥</div>
+        </div>
+    </section>
+
+    <!-- Photo Slideshow Section -->
+    <section class="slideshow-section">
+        <div class="slideshow-container" id="slideshowContainer">
+            <h2 class="slideshow-title">Our Beautiful Moments</h2>
+            <div class="slideshow">
+                <div class="slide active">
+                    <div class="slide-content">
+                        <div class="slide-image-placeholder">📷</div>
+                        <p class="slide-caption">"The day everything changed"</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-image-placeholder">💕</div>
+                        <p class="slide-caption">"Every smile you give me"</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-image-placeholder">🌹</div>
+                        <p class="slide-caption">"Our adventures together"</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="slide-image-placeholder">✨</div>
+                        <p class="slide-caption">"Creating memories with you"</p>
+                    </div>
+                </div>
+                <div class="slide-nav">
+                    <span class="slide-dot active" data-slide="0"></span>
+                    <span class="slide-dot" data-slide="1"></span>
+                    <span class="slide-dot" data-slide="2"></span>
+                    <span class="slide-dot" data-slide="3"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Pin Section -->
+    <section class="photo-pin-section">
+        <div class="pin-container" id="pinContainer">
+            <h2 class="pin-title">Our Memories Together</h2>
+            <div class="polaroid-grid">
+                <!-- Row 1: 1 photo at top -->
+                <div class="polaroid-row polaroid-row-1">
+                    <div class="polaroid">
+                        <div class="polaroid-image">
+                            <img src="image/WhatsApp Image 2026-02-13 at 17.59.32.jpeg" alt="Our first moment">
+                        </div>
+                        <div class="polaroid-caption">Our first moment</div>
+                    </div>
+                </div>
+
+                <!-- Row 2: 2 photos in middle -->
+                <div class="polaroid-row polaroid-row-2">
+                    <div class="polaroid">
+                        <div class="polaroid-image">
+                            <img src="image/WhatsApp Image 2026-02-13 at 16.51.07.jpeg" alt="Forever in my heart">
+                        </div>
+                        <div class="polaroid-caption">Forever in my heart</div>
+                    </div>
+
+                    <div class="polaroid">
+                        <div class="polaroid-image">
+                            <img src="image/WhatsApp Image 2026-02-13 at 16.41.35.jpeg" alt="You and me">
+                        </div>
+                        <div class="polaroid-caption">You and me</div>
+                    </div>
+                </div>
+
+                <!-- Row 3: 3 photos at bottom -->
+                <div class="polaroid-row polaroid-row-3">
+                    <div class="polaroid">
+                        <div class="polaroid-image">
+                            <img src="image/123.jpg" alt="My favorite memory">
+                        </div>
+                        <div class="polaroid-caption">My favorite memory</div>
+                    </div>
+
+                    <div class="polaroid">
+                        <div class="polaroid-image">
+                            <img src="image/WhatsApp Image 2026-02-13 at 16.41.34 (2).jpeg" alt="Beautiful times">
+                        </div>
+                        <div class="polaroid-caption">Beautiful times</div>
+                    </div>
+
+                    <div class="polaroid">
+                        <div class="polaroid-image">
+                            <img src="image/WhatsApp Image 2026-02-13 at 16.41.34 (1).jpeg" alt="Always together">
+                        </div>
+                        <div class="polaroid-caption">Always together</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container" id="videoContainer">
+            <h2 class="video-title">Our Story in Motion</h2>
+            <p class="video-subtitle">Every moment captured, every memory cherished</p>
+            
+            <div class="video-wrapper">
+                <div class="video-player" id="videoPlayer">
+                    <!-- Replace 'your-video.mp4' with your actual video path -->
+                    <video id="mainVideo" preload="metadata" loop>
+                        <source src="video/ln.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <div class="custom-play-button" id="playButton">
+                        <div class="play-icon"></div>
+                    </div>
+                    
+                    <div class="video-controls-overlay">
+                        <!-- Native controls will show on hover -->
+                    </div>
+                </div>
+                
+                <p class="video-caption">
+                    A collection of our most precious moments together, 
+                    frozen in time but forever alive in our hearts
+                </p>
+                
+                <div class="video-heart-decoration">♥ ♥ ♥</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content" id="ctaContent">
+            <h2>FOREVER WITH YOU</h2>
+            <p>Today, tomorrow, and always</p>
+            <button class="heart-button" onclick="showLoveMessage()">I LOVE YOU ♥</button>
+        </div>
+    </section>
+
+    <!-- Music Control -->
+    <div class="music-control" id="musicControl" title="Background Music"></div>
+
+    <!-- Audio Element (subtle background ambience) -->
+    <audio id="bgMusic" loop>
+        <!-- You can add a romantic music file here -->
+        <!-- <source src="your-music-file.mp3" type="audio/mpeg"> -->
+    </audio>
+
+    <script>
+        // Scroll-based animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        observer.observe(document.getElementById('messageContainer'));
+        observer.observe(document.getElementById('slideshowContainer'));
+        observer.observe(document.getElementById('pinContainer'));
+        observer.observe(document.getElementById('videoContainer'));
+        observer.observe(document.getElementById('ctaContent'));
+
+        // Floating hearts
+        function createFloatingHeart() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '♥';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 20000);
+        }
+
+        // Create hearts periodically
+        setInterval(createFloatingHeart, 2000);
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFloatingHeart, i * 400);
+        }
+
+        // Slideshow functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slide-dot');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Auto-advance slides
+        setInterval(nextSlide, 5000);
+
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(parseInt(dot.dataset.slide));
+            });
+        });
+
+        // Music control
+        const musicControl = document.getElementById('musicControl');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+
+        musicControl.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicControl.classList.add('paused');
+            } else {
+                bgMusic.play().catch(e => {
+                    console.log('Audio playback requires user interaction');
+                });
+                musicControl.classList.remove('paused');
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Love message button
+        function showLoveMessage() {
+            alert('I love you more than words can express! You mean everything to me. ♥');
+        }
+
+        // Video player controls
+        const mainVideo = document.getElementById('mainVideo');
+        const playButton = document.getElementById('playButton');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        if (mainVideo && playButton) {
+            // Custom play button click
+            playButton.addEventListener('click', function() {
+                if (mainVideo.paused) {
+                    mainVideo.play();
+                    playButton.classList.add('playing');
+                    mainVideo.setAttribute('controls', 'controls');
+                } else {
+                    mainVideo.pause();
+                    playButton.classList.remove('playing');
+                }
+            });
+
+            // Show/hide play button when video plays/pauses
+            mainVideo.addEventListener('play', function() {
+                playButton.classList.add('playing');
+            });
+
+            mainVideo.addEventListener('pause', function() {
+                playButton.classList.remove('playing');
+            });
+
+            // Hide play button when video ends
+            mainVideo.addEventListener('ended', function() {
+                playButton.classList.remove('playing');
+                mainVideo.removeAttribute('controls');
+            });
+
+            // Click anywhere on video to play/pause
+            videoPlayer.addEventListener('click', function(e) {
+                if (e.target !== playButton && !e.target.closest('.custom-play-button')) {
+                    if (mainVideo.paused) {
+                        mainVideo.play();
+                        mainVideo.setAttribute('controls', 'controls');
+                    } else {
+                        mainVideo.pause();
+                    }
+                }
+            });
+        }
+
+        // Smooth scroll for heart indicator
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.querySelector('.love-message').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
